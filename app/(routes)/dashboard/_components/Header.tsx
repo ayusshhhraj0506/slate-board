@@ -1,0 +1,40 @@
+import { Button } from '@/components/ui/button';
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+import { Search, Send } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
+
+function Header() {
+  const { user }: any = useKindeBrowserClient();
+  return (
+    <div className="flex justify-end w-full gap-2 items-center">
+      <div className="flex gap-2 items-center bg-neutral-900 border rounded-lg border-neutral-700 p-2">
+        <Search className="h-4 w-4" />
+        <input type="text" placeholder="Search" />
+      </div>
+      <div>
+        {/* <Image
+          src={user?.picture || null}
+          alt="user"
+          width={30}
+          height={30}
+          className="rounded-full"
+        /> */}
+        {user?.picture && (
+          <Image
+            src={user.picture}
+            alt="user"
+            width={30}
+            height={30}
+            className="rounded-full"
+          />
+        )}
+      </div>
+      <Button className="gap-2 text-sm flex h-8 bg-orange-600 hover:bg-orange-700">
+        <Send className="h-4 w-4" /> Invite
+      </Button>
+    </div>
+  );
+}
+
+export default Header;
