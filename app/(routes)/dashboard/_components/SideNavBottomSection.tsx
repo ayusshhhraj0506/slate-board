@@ -13,7 +13,7 @@ import {
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
 
-function SideNavBottomSection({ onFileCreate }: any) {
+function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   const menuList = [
     {
       id: 1,
@@ -79,11 +79,14 @@ function SideNavBottomSection({ onFileCreate }: any) {
       </Dialog>
 
       <div className="h-4 w-full bg-neutral-300 rounded-full mt-5">
-        <div className="h-4 w-[40%] bg-green-600 rounded-full"></div>
+        <div
+          className={`h-4  bg-green-600 rounded-full`}
+          style={{ width: `${(totalFiles / 5) * 100}%` }}
+        ></div>
       </div>
       <div>
         <h2 className="text-[12px] mt-3">
-          <strong>1</strong> out of <strong>5</strong> files used
+          <strong>{totalFiles}</strong> out of <strong>5</strong> files used
         </h2>
         <h2 className="text-[10px] mt-1">
           <span className="underline">Upgrade</span> your plan for unlimited
