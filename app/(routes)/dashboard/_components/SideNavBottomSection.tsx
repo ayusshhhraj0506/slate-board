@@ -1,8 +1,19 @@
 import { Button } from '@/components/ui/button';
 import { Archive, Flag, Github, Plus } from 'lucide-react';
-import React from 'react';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
 
-function SideNavBottomSection() {
+function SideNavBottomSection({ onFileCreate }: any) {
   const menuList = [
     {
       id: 1,
@@ -23,6 +34,7 @@ function SideNavBottomSection() {
       path: '',
     },
   ];
+  const [fileInput, setFileInput] = useState('');
   return (
     <div>
       {menuList.map((menu, index) => (
@@ -34,9 +46,38 @@ function SideNavBottomSection() {
           {menu.name}
         </h2>
       ))}
-      <Button className="w-full bg-orange-600 hover:bg-orange-500 mt-3 justify-start">
-        New File <Plus className="h-4 w-4" />
-      </Button>
+      <Dialog>
+        <DialogTrigger className="w-full" asChild>
+          <Button className="w-full bg-orange-600 hover:bg-orange-500 mt-3 justify-start">
+            New File <Plus className="h-4 w-4" />
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="bg-black border border-neutral-600">
+          <DialogHeader>
+            <DialogTitle className="text-white">Create New File</DialogTitle>
+            <DialogDescription>
+              <Input
+                onChange={(e) => setFileInput(e.target.value)}
+                placeholder="Write File Name"
+                className="mt-5"
+              />
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button
+                onClick={() => onFileCreate(fileInput)}
+                disabled={!(fileInput && fileInput.length > 3)}
+                type="button"
+                className="bg-orange-600 hover:bg-orange-500"
+              >
+                Create
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
       <div className="h-4 w-full bg-neutral-300 rounded-full mt-5">
         <div className="h-4 w-[40%] bg-green-600 rounded-full"></div>
       </div>

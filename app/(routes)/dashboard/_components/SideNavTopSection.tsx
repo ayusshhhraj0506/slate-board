@@ -18,7 +18,7 @@ export interface TEAM {
   teamName: string;
   _id: string;
 }
-function SideNavTopSection({ user }: any) {
+function SideNavTopSection({ user, setActiveTeamInfo }: any) {
   const menu = [
     {
       id: 1,
@@ -38,6 +38,11 @@ function SideNavTopSection({ user }: any) {
   const convex = useConvex();
   const [activeTeam, setActiveTeam] = useState<TEAM>();
   const [teamList, setTeamList] = useState<TEAM[]>([]);
+
+  useEffect(() => {
+    activeTeam && setActiveTeamInfo(activeTeam);
+  }, [activeTeam]);
+
   const getTeamLists = async () => {
     const result = await convex.query(api.teams.getTeam, {
       email: user?.email,
