@@ -17,6 +17,7 @@
     "@editorjs/list": "^2.0.9",
     "@editorjs/paragraph": "^2.11.7",
     "@editorjs/quote": "^2.7.6",
+    "@excalidraw/excalidraw": "^0.18.0-6135548",
     "@kinde-oss/kinde-auth-nextjs": "^2.11.0",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.15",
