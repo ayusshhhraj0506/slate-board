@@ -14,7 +14,7 @@ interface Feature {
 }
 
 interface Feature51Props {
-  features: Feature[];
+  features?: Feature[];
   className?: string;
 }
 
@@ -71,9 +71,8 @@ const Features2 = ({
                 <TabsTrigger
                   key={tab.id}
                   value={tab.id}
-                  className={`group flex w-full flex-col items-start justify-start gap-1 rounded-md border p-4 text-left whitespace-normal shadow-none transition-opacity duration-200 hover:border-muted hover:opacity-80 data-[state=active]:bg-muted  data-[state=active]:shadow-none ${
-                    tab.isDefault ? '' : ''
-                  }`}
+                  className={`group flex w-full flex-col items-start justify-start gap-1 rounded-md border p-4 text-left whitespace-normal shadow-none transition-opacity duration-200 hover:border-muted hover:opacity-80 data-[state=active]:bg-muted  data-[state=active]:shadow-none ${tab.isDefault ? '' : ''
+                    }`}
                 >
                   <div className="flex items-center gap-2 md:flex-col  md:items-start lg:gap-4">
                     {tab.icon && (

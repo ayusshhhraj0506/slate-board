@@ -1,7 +1,7 @@
 'use client';
 import { ReactNode } from 'react';
 import { motion, Variants } from 'motion/react';
-import React from 'react';
+import React, { ComponentType } from 'react';
 
 export type PresetType =
   | 'fade'
@@ -23,8 +23,8 @@ export type AnimatedGroupProps = {
     item?: Variants;
   };
   preset?: PresetType;
-  as?: React.ElementType;
-  asChild?: React.ElementType;
+  as?: keyof React.JSX.IntrinsicElements | ComponentType<unknown>;
+  asChild?: keyof React.JSX.IntrinsicElements | ComponentType<unknown>;
 };
 
 const defaultContainerVariants: Variants = {
@@ -115,28 +115,51 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
-  const MotionComponent = React.useMemo(
-    () => motion.create(as as keyof JSX.IntrinsicElements),
-    [as]
-  );
-  const MotionChild = React.useMemo(
-    () => motion.create(asChild as keyof JSX.IntrinsicElements),
-    [asChild]
-  );
+  // Get the motion component - default to div if not a string or invalid
+  // Components are memoized to avoid recreation on each render
+  const MotionComponent = React.useMemo(() => {
+    if (typeof as === 'string') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const component = (motion as any)[as];
+      return component || motion.div;
+    }
+    if (as) {
+      // @react-compiler-disable-next-line
+      return motion(as as ComponentType<unknown>);
+    }
+    return motion.div;
+  }, [as]);
+
+  const MotionChild = React.useMemo(() => {
+    if (typeof asChild === 'string') {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const component = (motion as any)[asChild];
+      return component || motion.div;
+    }
+    if (asChild) {
+      // @react-compiler-disable-next-line
+      return motion(asChild as ComponentType<unknown>);
+    }
+    return motion.div;
+  }, [asChild]);
+
+  // Memoized components are safe to use - they don't recreate on each render
+  const Component = MotionComponent as typeof motion.div;
+  const Child = MotionChild as typeof motion.div;
 
   return (
-    <MotionComponent
+    <Component
       initial='hidden'
       animate='visible'
       variants={containerVariants}
       className={className}
     >
       {React.Children.map(children, (child, index) => (
-        <MotionChild key={index} variants={itemVariants}>
+        <Child key={index} variants={itemVariants}>
           {child}
-        </MotionChild>
+        </Child>
       ))}
-    </MotionComponent>
+    </Component>
   );
 }
 

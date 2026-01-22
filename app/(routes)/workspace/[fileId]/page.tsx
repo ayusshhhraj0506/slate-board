@@ -4,6 +4,7 @@ import WorkspaceHeader from '../_components/WorkspaceHeader';
 import Editor from '../_components/Editor';
 import { useConvex } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { Id } from '@/convex/_generated/dataModel';
 import { FILE } from '../../dashboard/_components/FileList';
 import Canvas from '../_components/Canvas';
 
@@ -12,18 +13,31 @@ function Workspace({ params }: { params: Promise<{ fileId: string }> }) {
 
   const [triggerSave, setTriggerSave] = useState(false);
   const convex = useConvex();
-  const [fileData, setFileData] = useState<FILE | any>();
+  const [fileData, setFileData] = useState<FILE>();
 
   const getFileId = async () => {
+    if (!fileId) return;
     const result = await convex.query(api.files.getFileById, {
-      _id: fileId,
+      _id: fileId as Id<'files'>,
     });
-    setFileData(result);
+    setFileData(result as FILE);
   };
+
   useEffect(() => {
     console.log('FILE ID', fileId);
-    if (fileId) getFileId();
+    if (fileId) {
+      getFileId();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileId]);
+
+  if (!fileData) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-white">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div>

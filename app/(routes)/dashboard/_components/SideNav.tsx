@@ -14,23 +14,42 @@ function SideNav() {
   const convex = useConvex();
   const [totalFiles, setTotalFiles] = useState<number>();
   const { fileList_, setFileList_ } = useContext(FilesListContext);
+
+  const getFiles = async (teamId: string) => {
+    const result = await convex.query(api.files.getFiles, {
+      teamId: teamId,
+    });
+    console.log(result);
+    setFileList_(result);
+    setTotalFiles(result?.length);
+  };
+
   useEffect(() => {
-    activeTeam && getFiles();
-  }, [activeTeam]);
+    const teamId = activeTeam?._id;
+    if (teamId) {
+      getFiles(teamId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTeam?._id]);
 
   const onFileCreate = (fileName: string) => {
+    const teamId = activeTeam?._id;
+    if (!teamId) {
+      toast.error('Please select a team first');
+      return;
+    }
     console.log(fileName);
     createFile({
       fileName: fileName,
-      teamId: activeTeam?._id,
-      createBy: user?.email,
+      teamId: teamId,
+      createBy: user?.email || '',
       archive: false,
       document: '',
       whiteboard: '',
     }).then(
       (resp) => {
         if (resp) {
-          getFiles();
+          getFiles(teamId);
           toast.success('File Created Successfully!');
         }
       },
@@ -38,15 +57,6 @@ function SideNav() {
         toast.error('Something went wrong', e);
       }
     );
-  };
-
-  const getFiles = async () => {
-    const result = await convex.query(api.files.getFiles, {
-      teamId: activeTeam?._id,
-    });
-    console.log(result);
-    setFileList_(result);
-    setTotalFiles(result?.length);
   };
 
   return (
