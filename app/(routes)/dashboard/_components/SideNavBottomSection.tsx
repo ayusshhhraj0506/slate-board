@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/dialog';
 import React, { useState } from 'react';
 import { Input } from '@/components/ui/input';
+import Constant from '@/app/_constant/Constant';
+import { toast } from 'sonner';
 
 function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   const menuList = [
@@ -35,6 +37,16 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
     },
   ];
   const [fileInput, setFileInput] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleDialogOpen = () => {
+    if (totalFiles >= Constant.MAX_FREE_FILE) {
+      toast.error('Max file limit reached | UPGRADE PLAN');
+      return;
+    }
+    setOpen(true);
+  };
+
   return (
     <div>
       {menuList.map((menu, index) => (
@@ -46,36 +58,45 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
           {menu.name}
         </h2>
       ))}
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full" asChild>
-          <Button className="w-full bg-orange-600 hover:bg-orange-500 mt-3 justify-start">
+          <Button
+            onClick={handleDialogOpen}
+            className="w-full bg-orange-600 hover:bg-orange-500 mt-3 justify-start"
+          >
             New File <Plus className="h-4 w-4" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="bg-black border border-neutral-600">
-          <DialogHeader>
-            <DialogTitle className="text-white">Create New File</DialogTitle>
-            <DialogDescription>
-              <Input
-                onChange={(e) => setFileInput(e.target.value)}
-                placeholder="Write File Name"
-                className="mt-5"
-              />
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="sm:justify-start">
-            <DialogClose asChild>
-              <Button
-                onClick={() => onFileCreate(fileInput)}
-                disabled={!(fileInput && fileInput.length > 3)}
-                type="button"
-                className="bg-orange-600 hover:bg-orange-500"
-              >
-                Create
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
+        {totalFiles < Constant.MAX_FREE_FILE && (
+          <DialogContent className="bg-black border border-neutral-600">
+            <DialogHeader>
+              <DialogTitle className="text-white">Create New File</DialogTitle>
+              <DialogDescription>
+                <Input
+                  onChange={(e) => setFileInput(e.target.value)}
+                  placeholder="Write File Name"
+                  className="mt-5"
+                />
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-start">
+              <DialogClose asChild>
+                <Button
+                  onClick={() => {
+                    onFileCreate(fileInput);
+                    setFileInput('');
+                    setOpen(false);
+                  }}
+                  disabled={!(fileInput && fileInput.length > 3)}
+                  type="button"
+                  className="bg-orange-600 hover:bg-orange-500"
+                >
+                  Create
+                </Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        )}
       </Dialog>
 
       <div className="h-4 w-full bg-neutral-300 rounded-full mt-5">
@@ -86,7 +107,7 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
       </div>
       <div>
         <h2 className="text-[12px] mt-3">
-          <strong>{totalFiles}</strong> out of <strong>5</strong> files used
+          <strong>{totalFiles}</strong> out of <strong>{Constant.MAX_FREE_FILE}</strong> files used
         </h2>
         <h2 className="text-[10px] mt-1">
           <span className="underline">Upgrade</span> your plan for unlimited
