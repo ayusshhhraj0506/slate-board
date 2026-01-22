@@ -22,8 +22,8 @@ export default function Home() {
       <Header />
       <Hero />
       <Features />
-      <Features2 />
-      <Pricing />
+      {/* <Features2 /> */}
+      {/* <Pricing /> */}
       <GitStar />
       <CTA />
       <Contact />

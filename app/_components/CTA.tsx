@@ -37,7 +37,7 @@ const CTA = ({ className }: Waitlist1Props) => {
           </div>
         </div>
 
-        <div className="mt-6 w-full max-w-xl mx-auto flex items-center gap-3 justify-center">
+        {/* <div className="mt-6 w-full max-w-xl mx-auto flex items-center gap-3 justify-center">
           <span className="inline-flex items-center -space-x-2.5">
             {Array.from({ length: 6 }).map((_, index) => (
               <Avatar key={index} className="h-8 w-8">
@@ -51,7 +51,7 @@ const CTA = ({ className }: Waitlist1Props) => {
           <p className="tracking-tight text-neutral-500 ml-2">
             +1000 people already joined
           </p>
-        </div>
+        </div> */}
       </BackgroundLines>
     </section>
   );

@@ -23,8 +23,8 @@ const GitStar = ({
   description = 'Build faster with our collection of pre-built blocks. Speed up your development and ship features in record time.',
   buttons = {
     primary: {
-      text: 'Buy Now',
-      url: 'https://www.shadcnblocks.com',
+      text: '⭐️ Star the repo ⭐️',
+      url: 'https://github.com/ayusshhhraj0506/slate-board',
     },
   },
   className,
@@ -49,7 +49,7 @@ const GitStar = ({
                 variant="default"
                 size="lg"
               >
-                <a href="https://github.com/ayusshhhraj0506">
+                <a target="_blank" href="https://github.com/ayusshhhraj0506/slate-board">
                   {buttons.primary.text}
                 </a>
               </Button>
