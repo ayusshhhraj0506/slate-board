@@ -30,7 +30,7 @@ const GitStar = ({
   className,
 }: Cta10Props) => {
   return (
-    <section className={cn('py-32 lg:px-30 font-mono', className)}>
+    <section className={cn('py-32 lg:px-30 font-mono p-4', className)}>
       <div className="container">
         <div className="flex w-full flex-col gap-16 overflow-hidden rounded-lg bg-accent p-8 md:rounded-xl lg:flex-row lg:items-center lg:p-12">
           <div className="flex-1">

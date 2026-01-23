@@ -1,23 +1,27 @@
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
-h1.ce-header{
+h1.ce-header {
   @apply text-3xl font-bold
 }
-h2.ce-header{
+
+h2.ce-header {
   @apply text-2xl font-semibold
 }
-h3.ce-header{
+
+h3.ce-header {
   @apply text-xl font-semibold
 }
-h4.ce-header{
+
+h4.ce-header {
   @apply text-lg font-semibold
 }
-h5.ce-header{
+
+h5.ce-header {
   @apply text-base font-semibold
 }
-h6.ce-header{
+
+h6.ce-header {
   @apply text-base font-semibold
 }
 
@@ -139,13 +143,61 @@ h6.ce-header{
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-html, body {
+html,
+body {
   background-color: black;
   color: white;
-  
+}
+
+/* --- EditorJS (dark page) visibility tweaks --- */
+/* Make the "+" and settings buttons readable on black background */
+#editorjs .ce-toolbar__plus,
+#editorjs .ce-toolbar__settings-btn {
+  background: #ffffff !important;
+  border: 1px solid rgb(64 64 64) !important;
+  /* neutral-700-ish */
+  color: #ffffff !important;
+  /* near-black */
+}
+
+#editorjs .ce-toolbar__plus:hover,
+#editorjs .ce-toolbar__settings-btn:hover {
+  background: rgb(229 231 235) !important;
+  /* neutral-200 */
+}
+
+/* Ensure SVG icons inside those buttons are dark */
+#editorjs .ce-toolbar__plus svg,
+#editorjs .ce-toolbar__settings-btn svg {
+  fill: #111827 !important;
+  color: #111827 !important;
+}
+
+/* Popovers/menus readable in dark UI */
+#editorjs .ce-popover,
+#editorjs .ce-inline-toolbar,
+#editorjs .ce-conversion-toolbar,
+#editorjs .ce-settings,
+#editorjs .ce-toolbox {
+  background: #ffffff !important;
+  color: #111827 !important;
+  border: 1px solid rgb(64 64 64) !important;
+}
+
+#editorjs .ce-popover__item,
+#editorjs .ce-inline-tool,
+#editorjs .ce-settings__button {
+  color: #111827 !important;
+}
+
+#editorjs .ce-popover__item:hover,
+#editorjs .ce-inline-tool:hover,
+#editorjs .ce-settings__button:hover {
+  background: rgb(105, 105, 106) !important;
 }

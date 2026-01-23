@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import moment from 'moment';
 import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 import Image from 'next/image';
-import { Archive, MoreHorizontalIcon } from 'lucide-react';
+import { Archive, MoreHorizontalIcon, Trash } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,7 +37,7 @@ function FileList() {
   return (
     <div className="mt-6">
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y-2 divide-neutral-400">
+        <table className="min-w-full divide-y-2 divide-neutral-700">
           <thead className="ltr:text-left rtl:text-right">
             <tr className="*:font-medium *:text-white">
               <th className="px-3 py-2 whitespace-nowrap">File Name</th>
@@ -47,14 +47,14 @@ function FileList() {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-neutral-500 *:even:bg-neutral-900 cursor-pointer">
+          <tbody className="divide-y divide-neutral-700">
             {fileList?.map((file: FILE, index: number) => (
               <tr
                 onClick={() => router.push('/workspace/' + file._id)}
                 key={index}
-                className="*:text-white *:first:font-medium"
+                className="*:text-white *:first:font-medium hover:bg-neutral-900 cursor-pointer"
               >
-                <td className="px-3 py-2 whitespace-nowrap">{file.fileName}</td>
+                <td className="px-3 py-2 whitespace-nowrap capitalize">{file.fileName}</td>
                 <td className="px-3 py-2 whitespace-nowrap">
                   {moment(file._creationTime).format(' DD MMM YYYY')}
                 </td>
@@ -79,6 +79,10 @@ function FileList() {
                       <DropdownMenuItem className="gap-3">
                         {' '}
                         <Archive className="h-4 w-4" /> Archive
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="gap-3">
+                        {' '}
+                        <Trash className="h-4 w-4" /> Delete
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

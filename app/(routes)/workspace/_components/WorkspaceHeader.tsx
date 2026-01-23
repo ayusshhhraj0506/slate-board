@@ -5,15 +5,26 @@ import React from 'react';
 
 function WorkspaceHeader({ onSave }: any) {
   return (
-    <div className="p-3 border-b border-neutral-500 flex justify-between items-center">
+    <div className="p-1 border-b border-neutral-700 flex justify-between items-center">
       <div className="flex gap-2 items-center">
         <Image
-          src={'/logo/slate-board-1.png'}
+          src={'/logo/logo-2.png'}
           alt="logo"
           width={50}
           height={50}
         />
-        <h2>File Name</h2>
+        <h2>file name</h2>
+      </div>
+      <div className="flex border border-neutral-600 rounded-sm overflow-hidden">
+        <Button className="rounded-none border-0 border-r border-neutral-600 bg-neutral-900 hover:bg-neutral-700">
+          Document
+        </Button>
+        <Button className="rounded-none border-0 border-r border-neutral-600 bg-neutral-700 hover:bg-neutral-700">
+          Both
+        </Button>
+        <Button className="rounded-none border-0 bg-neutral-900 hover:bg-neutral-700">
+          WhiteBoard
+        </Button>
       </div>
       <div className="flex gap-4 items-center">
         <Button

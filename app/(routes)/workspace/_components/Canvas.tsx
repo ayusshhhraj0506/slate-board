@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import "@excalidraw/excalidraw/index.css";
 import { LoadScene, SaveToActiveFile, ToggleTheme } from "@excalidraw/excalidraw/components/main-menu/DefaultItems";
 import { MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
-import Image from "next/image";
 import { FILE } from "../../dashboard/_components/FileList";
 import { useEffect, useState } from "react";
 import { api } from "@/convex/_generated/api";

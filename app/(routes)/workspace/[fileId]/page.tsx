@@ -7,6 +7,7 @@ import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel';
 import { FILE } from '../../dashboard/_components/FileList';
 import Canvas from '../_components/Canvas';
+import Image from 'next/image';
 
 function Workspace({ params }: { params: Promise<{ fileId: string }> }) {
   const { fileId } = use(params);
@@ -34,7 +35,7 @@ function Workspace({ params }: { params: Promise<{ fileId: string }> }) {
   if (!fileData) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <p className="text-white">Loading...</p>
+        <p className="text-white"><Image src="/logo/logo-2.png" alt="logo" width={300} height={300} /></p>
       </div>
     );
   }
@@ -45,7 +46,11 @@ function Workspace({ params }: { params: Promise<{ fileId: string }> }) {
 
       <section className="grid grid-cols-1 md:grid-cols-2">
         {/* Document */}
-        <div className="bg-black text-white h-screen">
+        <div className="bg-black text-white h-full min-h-screen" style={{
+          backgroundImage:
+            'radial-gradient(rgba(255,255,255,0.25) 0.5px, transparent 0.5px)',
+          backgroundSize: '18px 18px',
+        }}>
           <Editor
             onSaveTrigger={triggerSave}
             fileId={fileId}
@@ -54,11 +59,10 @@ function Workspace({ params }: { params: Promise<{ fileId: string }> }) {
         </div>
 
         {/* Whiteboard */}
-        <div className=" h-screen border-l border-neutral-500">
+        <div className=" h-[calc(100vh-64px)] overflow-y-auto border-l border-neutral-500">
           <Canvas onSaveTrigger={triggerSave}
             fileId={fileId}
             fileData={fileData} />
-
         </div>
       </section>
     </div>

@@ -17,7 +17,7 @@ export const BackgroundLines = ({
   return (
     <div
       className={cn(
-        'relative overflow-hidden h-80 md:h-screen w-full bg-white dark:bg-black',
+        'relative overflow-hidden h-80 md:h-screen w-full',
         className
       )}
     >

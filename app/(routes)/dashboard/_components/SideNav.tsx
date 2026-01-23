@@ -61,7 +61,7 @@ function SideNav() {
 
   return (
     <>
-      <div className="flex flex-col bg-black h-screen fixed w-64 border-r border-neutral-600 p-6">
+      <div className="flex flex-col bg-black h-screen fixed w-64 border-r border-neutral-700 p-6">
         <div className="flex-1">
           <SideNavTopSection
             user={user}

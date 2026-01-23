@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Archive, Flag, Github, Plus } from 'lucide-react';
+import { Archive, Flag, Github, Plus, Rocket } from 'lucide-react';
 import {
   Dialog,
   DialogClose,
@@ -22,18 +22,21 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
       name: 'Getting Started',
       icon: Flag,
       path: '',
+      keyboard: "⌘ + K",
     },
     {
       id: 2,
       name: 'Github',
       icon: Github,
       path: '',
+      keyboard: "⌘ + G",
     },
     {
       id: 3,
       name: 'Archive',
       icon: Archive,
       path: '',
+      keyboard: "⌘ + Shift + A",
     },
   ];
   const [fileInput, setFileInput] = useState('');
@@ -52,19 +55,30 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
       {menuList.map((menu, index) => (
         <h2
           key={index}
-          className="flex gap-2 p-1 px-2 text-[14px] hover:bg-neutral-600 rounded-md cursor-pointer"
+          className="flex items-center gap-2 p-1 px-2 text-[14px] hover:bg-neutral-800 rounded-lg cursor-pointer"
         >
           <menu.icon className="h-5 w-5" />
-          {menu.name}
+          <span className="flex-1">{menu.name}</span>
+          {menu.keyboard && (
+            <span className="bg-neutral-700 rounded-lg px-2 py-0.5 text-[10px] font-mono">
+              {menu.keyboard}
+            </span>
+          )}
         </h2>
       ))}
+      <h2
+        className="flex gap-2 p-1 px-2 text-[14px] hover:bg-neutral-800 rounded-lg cursor-pointer"
+      >
+        <Rocket className='h-5 w-5' />
+        Help Us Improve
+      </h2>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full" asChild>
           <Button
             onClick={handleDialogOpen}
-            className="w-full bg-orange-600 hover:bg-orange-500 mt-3 justify-start"
+            className="w-full bg-orange-600 hover:bg-orange-700 mt-3 justify-start"
           >
-            New File <Plus className="h-4 w-4" />
+            New File <Plus className="h-4 w-4 ml-auto" />
           </Button>
         </DialogTrigger>
         {totalFiles < Constant.MAX_FREE_FILE && (

@@ -38,7 +38,7 @@ const Contact = ({
   className,
 }: Contact7Props) => {
   return (
-    <section className={cn('bg-balck py-32 lg:px-30 font-mono', className)}>
+    <section className={cn('bg-balck py-32 lg:px-30 font-mono p-4', className)}>
       <div className="container">
         <div className="mb-14">
           <h1 className="mt-2 mb-3 text-3xl text-orange-600 font-semibold text-balance md:text-5xl">

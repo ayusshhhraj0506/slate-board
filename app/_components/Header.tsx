@@ -6,18 +6,49 @@ import React from 'react';
 
 function Header() {
   return (
-    <header className="bg-black font-mono">
-      <div className="mx-auto flex h-16 border border-neutral-700 rounded-full mt-5 max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:px-8">
+    <header className=" font-mono">
+      <div className="mx-auto flex h-16 rounded-full mt-5 max-w-7xl items-center gap-8 px-4 py-10 sm:px-6 lg:px-8">
         <Image
-          src="/logo/slate-board-1.png"
+          src="/logo/logo-2.png"
           alt="logo"
-          width={200}
-          height={200}
+          width={150}
+          height={150}
+          className='p-1 rounded-full'
         />
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav aria-label="Global" className="hidden md:block">
             <ul className="flex items-center gap-6 text-sm">
+              <li>
+                <a
+                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
+                  href="#"
+                >
+                  {' '}
+                  Home{' '}
+                </a>
+              </li>
+
+
+              <li>
+                <a
+                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
+                  href="#"
+                >
+                  {' '}
+                  Features{' '}
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
+                  href="#"
+                >
+                  {' '}
+                  How It Works{' '}
+                </a>
+              </li>
+
               <li>
                 <a
                   className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
@@ -34,37 +65,7 @@ function Header() {
                   href="#"
                 >
                   {' '}
-                  Features{' '}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
-                  href="#"
-                >
-                  {' '}
-                  Pricing{' '}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
-                  href="#"
-                >
-                  {' '}
-                  Services{' '}
-                </a>
-              </li>
-
-              <li>
-                <a
-                  className="text-white transition hover:text-orange-600 hover:underline-offset-4 hover:underline"
-                  href="#"
-                >
-                  {' '}
-                  Contact{' '}
+                  Contact Us{' '}
                 </a>
               </li>
             </ul>
@@ -76,7 +77,7 @@ function Header() {
                 className="block rounded-xl  px-5 py-2.5 text-sm font-medium 
             text-white border  border-orange-600 transition "
               >
-                <LoginLink postLoginRedirectURL="/dashboard"> Login</LoginLink>
+                <LoginLink postLoginRedirectURL="/dashboard"> Sign In</LoginLink>
               </div>
 
               <div
@@ -85,13 +86,13 @@ function Header() {
              text-white transition
               hover:bg-orange-500 sm:block"
               >
-                <RegisterLink>Register</RegisterLink>
+                <RegisterLink>Get Started</RegisterLink>
               </div>
-              <div>
+              {/* <div>
                 <Button className="bg-neutral-700 mt-1 rounded-xl hover:bg-neutral-800 border border-orange-600 ">
                   <Github className="h-5 w-5 text-orange-600 hover:bg-orange-600 hover:text-bg-neutral-600" />
                 </Button>
-              </div>
+              </div> */}
             </div>
 
             <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">

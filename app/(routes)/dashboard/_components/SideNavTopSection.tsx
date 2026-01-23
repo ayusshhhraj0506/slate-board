@@ -65,16 +65,17 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
     <section>
       <Popover>
         <PopoverTrigger>
-          <div className="flex items-center gap-3 hover:bg-neutral-800 p-2 rounded-md cursor-pointer">
+          <div className="flex items-center gap-2 hover:bg-neutral-800 p-1 rounded-md cursor-pointer">
             <Image
-              src="/logo/slate-board-1.png"
+              src="/logo/logo-2.png"
               alt="logo"
-              width={40}
-              height={40}
+              width={50}
+              height={50}
+              className='rounded-full'
             />
             <h2 className="flex gap-2 items-center font-bold text-[17px]">
               {activeTeam?.teamName}
-              <ChevronDown />{' '}
+              <ChevronDown className='w-3 h-3' />{' '}
             </h2>
           </div>
         </PopoverTrigger>
@@ -103,7 +104,7 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
               </h2>
             ))}
             <LogoutLink>
-              <h2 className="flex gap-2 items-center p-2 hover:bg-neutral-600 rounded-md text-sm cursor-pointer">
+              <h2 className="flex gap-2 items-center p-2 hover:bg-red-600 rounded-md text-sm cursor-pointer">
                 <LogOut className="h-4 w-4" />
                 Logout
               </h2>
@@ -132,11 +133,13 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
       <div>
         <Button
           variant="outline"
-          className="w-full justify-start
-          gap-2 font-bold mt-8 border border-neutral-500 bg-neutral-900 hover:bg-neutral-700 hover:text-white text-white"
+          className="w-full justify-start gap-2 font-bold mt-8 border border-neutral-700 bg-neutral-900 hover:bg-neutral-700 hover:text-white text-white"
         >
           <LayoutGrid className="h-5 w-5" />
           All Files
+          <span className='ml-auto font-extralight'>
+            A
+          </span>
         </Button>
       </div>
     </section>

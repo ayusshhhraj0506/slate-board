@@ -13,13 +13,6 @@ function Header() {
         <input type="text" placeholder="Search" />
       </div>
       <div>
-        {/* <Image
-          src={user?.picture || null}
-          alt="user"
-          width={30}
-          height={30}
-          className="rounded-full"
-        /> */}
         {user?.picture && (
           <Image
             src={user.picture}

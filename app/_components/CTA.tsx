@@ -17,7 +17,7 @@ const CTA = ({ className }: Waitlist1Props) => {
         className
       )}
     >
-      <BackgroundLines className="container bg-black flex w-full flex-col items-center justify-center px-4 md:h-full">
+      <BackgroundLines className="container flex w-full flex-col items-center justify-center px-4 md:h-full">
         <h2 className="relative z-20 py-2 font-mono text-center text-white text-5xl font-semibold tracking-tighter md:py-10 lg:text-8xl">
           Join The{' '}
           <span className=" font-extrabold text-orange-600">Slate</span>

@@ -20,16 +20,39 @@ import { Id } from '@/convex/_generated/dataModel';
 import { toast } from 'sonner';
 import { FILE } from '../../dashboard/_components/FileList';
 
+// const rawDocument = {
+//   "time": 1550476186479,
+//   blocks: [
+//     {
+//       data: {
+//         text: 'Untitled File',
+//         level: 1,
+//       },
+//       id: '123',
+//       type: 'header',
+//     },
+//     {
+//       data: {
+//         level: 4,
+//       },
+//       id: '1234',
+//       type: 'header',
+//     },
+
+//   ],
+//   version: '2.8.1',
+// };
+
 const rawDocument = {
   time: 1550476186479,
   blocks: [
     {
-      data: {
-        text: 'Document Name',
-        level: 2,
-      },
       id: '123',
       type: 'header',
+      data: {
+        text: 'Untitled File',
+        level: 1,
+      },
     },
     {
       data: {
@@ -99,9 +122,8 @@ function Editor({
         class: Header,
         shortcut: 'CMD+SHIFT+H',
         config: {
-          placeholder: 'Enter a header',
-          levels: [2, 3, 4],
-          defaultLevel: 3,
+          placeholder: 'Type your note or document here',
+          defaultLevel: 1,
         },
       },
       image: {
@@ -138,16 +160,25 @@ function Editor({
     });
     editorRef.current = editor;
   };
+
+  // useEffect(() => {
+  //   if (fileData) {
+  //     initEditor();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [fileData]);
+
   useEffect(() => {
-    if (fileData) {
-      initEditor();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!fileData) return;
+    if (editorRef.current) return;
+
+    initEditor();
   }, [fileData]);
+
 
   return (
     <div>
-      <div id="editorjs" className="ml-20"></div>
+      <div id="editorjs" className="ml-15"></div>
     </div>
   );
 }
