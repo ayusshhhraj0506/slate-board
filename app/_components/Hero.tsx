@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import {
   Pencil,
   PenTool,
@@ -19,7 +19,7 @@ import {
 import { HeroSvg } from './HeroSvg';
 
 function Hero() {
-  const iconVariants = {
+  const iconVariants: Variants = {
     animate: (custom: number) => ({
       y: [0, -15, 0],
       x: [0, 10, 0],
@@ -27,7 +27,7 @@ function Hero() {
       transition: {
         duration: 4 + Math.random() * 2,
         repeat: Infinity,
-        repeatType: 'reverse' as const,
+        repeatType: 'reverse',
         ease: 'easeIn',
         delay: custom * 1,
       },
